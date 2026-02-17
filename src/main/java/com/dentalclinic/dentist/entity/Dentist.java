@@ -26,4 +26,5 @@ public class Dentist extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "clinic_id", nullable = false)
     private Clinic clinic;
+
 }

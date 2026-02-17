@@ -1,0 +1,250 @@
+{
+    "info": {
+        "_postman_id": "dental-clinic-auth-collection",
+        "name": "Dental Clinic Auth",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Sign Up",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"username\": \"johndoe\",\n    \"email\": \"john.doe@example.com\",\n    \"password\": \"123456\",\n    \"role\": \"PATIENT\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"phoneNumber\": \"1234567890\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/auth/signup",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "auth",
+                        "signup"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Sign In",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "var jsonData = pm.response.json();",
+                            "pm.environment.set(\"accessToken\", jsonData.token);",
+                            "pm.environment.set(\"refreshToken\", jsonData.refreshToken);"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"email\": \"john.doe@example.com\",\n    \"password\": \"123456\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/auth/signin",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "auth",
+                        "signin"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Refresh Token",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "var jsonData = pm.response.json();",
+                            "pm.environment.set(\"accessToken\", jsonData.accessToken);",
+                            "pm.environment.set(\"refreshToken\", jsonData.refreshToken);"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"refreshToken\": \"{{refreshToken}}\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8080/api/auth/refreshtoken",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "auth",
+                        "refreshtoken"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Public Content",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8080/api/test/all",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "test",
+                        "all"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "User Content",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{accessToken}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8080/api/test/user",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "test",
+                        "user"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Moderator Content",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{accessToken}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8080/api/test/mod",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "test",
+                        "mod"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Admin Content",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{accessToken}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8080/api/test/admin",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "test",
+                        "admin"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Sign Out",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{accessToken}}"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8080/api/auth/signout",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        "api",
+                        "auth",
+                        "signout"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}

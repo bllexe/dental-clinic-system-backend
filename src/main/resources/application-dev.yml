@@ -2,17 +2,18 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/dental_clinic
     username: postgres
-    password: password
+    password: postgres 
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: validate 
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
   flyway:
-    enabled: true
+    enabled: true 
     baseline-on-migrate: true
     locations: classpath:db/migration
 server:
