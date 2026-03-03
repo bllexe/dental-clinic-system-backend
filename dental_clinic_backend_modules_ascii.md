@@ -66,3 +66,14 @@
 -   Metric-grafana-prometheus
 -   Docker compose
 -   Redis
+
+
+1 -) Clinic management (DONE)
+2 -) Dentist ve patient management (DONE)
+3 -) Treatment management DentistAvailability 
+4 -) Appointment management
+5 -) Medical records management invoice management
+6 -) Inventory management
+7 -) Notification management
+8 -) Report management
+
